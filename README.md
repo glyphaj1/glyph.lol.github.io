@@ -8,7 +8,7 @@ Live Demo: [glyphaj.vercel.app](https://glyph-lol-github-io.vercel.app/)
 
 ## ✨ Features
 
-- Global view counter (via [CountAPI](https://countapi.xyz)) [ NOT ADDED YET]
+- Global view counter (via [CountAPI]()) [ NOT ADDED YET]
 - Custom cursor & animated particles
 - Background music & volume control
 - Light/Dark theme toggle
