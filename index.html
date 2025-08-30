@@ -1,785 +1,968 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@glyphaj | guns.lol</title>
-    <meta name="description" content="Owner, Verified Account & Bug Hunter - Check out my profile">
-    <meta property="og:title" content="@glyphaj | guns.lol">
-    <meta property="og:description" content="Owner, Verified Account & Bug Hunter - Check out my profile!">
-    <meta property="og:image" content="https://assets.guns.lol/guns_banner_embed.png">
-    <meta property="og:url" content="https://glyphaj1.github.io/glyph.lol.github.io/">
-    <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #050505;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b3b8;
-            --accent-color: #43b581;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --hover-bg: rgba(255, 255, 255, 0.08);
-            --glow-color: rgba(255, 255, 255, 0.4);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@glyphaj | glyph.lol</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/glyphaj1/storage/refs/heads/main/images/purpledolar.png" sizes="512x512" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        [data-theme="light"] {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --text-primary: #1a1a1a;
-            --text-secondary: #6c757d;
-            --accent-color: #28a745;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --hover-bg: rgba(0, 0, 0, 0.05);
-            --glow-color: rgba(0, 0, 0, 0.3);
-        }
+<style>
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: none;
-        }
+:root {
+    --background-primary: #0a0a0a;
+    --background-secondary: #050505;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b3b8;
+    --accent-color: #43b581;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-background: rgba(255, 255, 255, 0.08);
+    --glow-color: rgba(255, 255, 255, 0.4);
+}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow: hidden;
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            transition: all 0.3s ease;
-        }
+[data-theme="light"] {
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6c757d;
+    --accent-color: #28a745;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --hover-background: rgba(0, 0, 0, 0.05);
+    --glow-color: rgba(0, 0, 0, 0.3);
+}
 
-        .cursor {
-            position: fixed;
-            width: 16px;
-            height: 16px;
-            background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: opacity 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 0 15px var(--glow-color);
-            opacity: 1;
-        }
+html, body {
+    cursor: none;
+    width: 100vw;
+    height: 100vh;
+}
 
-        .cursor.hidden {
-            opacity: 0;
-        }
+html *, body * {
+    cursor: inherit !important;
+}
 
-        .cursor.clicked {
-            transform: scale(0.7);
-        }
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--background-primary);
+    color: var(--text-primary);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
 
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            transition: all 0.3s ease;
-        }
+.mouse-cursor {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 0 15px var(--glow-color);
+    opacity: 1;
+}
 
-        [data-theme="dark"] .bg-container {
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #000000 0%, #0f0f23 50%, #1a1a2e 100%);
-        }
+.mouse-cursor.hidden {
+    opacity: 0;
+}
 
-        [data-theme="light"] .bg-container {
-            background: 
-                radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
-                linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
-        }
+.mouse-cursor.clicked {
+    transform: scale(0.7);
+}
 
-        .particle {
-            position: absolute;
-            background: var(--border-color);
-            border-radius: 50%;
-            animation: float 15s linear infinite;
-        }
+.background-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
 
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
-        }
+[data-theme="dark"] .background-container {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
+        linear-gradient(135deg, #000000 0%, #0f0f23 50%, #1a1a2e 100%);
+}
 
-        .entry-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.4s ease, visibility 0.4s ease;
-        }
+[data-theme="light"] .background-container {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
+        linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+}
 
-        .entry-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+.particle-element {
+    position: absolute;
+    background: var(--border-color);
+    border-radius: 50%;
+    animation: float 15s linear infinite;
+}
 
-        .entry-text {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--text-primary);
-            text-shadow: 0 0 20px var(--glow-color);
-            animation: glow 2s ease-in-out infinite alternate;
-            letter-spacing: 2px;
-        }
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
 
-        @keyframes glow {
-            from { text-shadow: 0 0 20px var(--glow-color); }
-            to { text-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color); }
-        }
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    user-select: none;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
 
-        .top-controls {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
+.welcome-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
-        .audio-controls {
-            background: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 12px 16px;
-            backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 0 20px var(--glow-color);
-            animation: audioGlow 2s ease-in-out infinite alternate;
-        }
+.welcome-text {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    text-shadow: 0 0 20px var(--glow-color);
+    animation: glow 2s ease-in-out infinite alternate;
+    letter-spacing: 2px;
+}
 
-        @keyframes audioGlow {
-            from { box-shadow: 0 0 20px var(--glow-color); }
-            to { box-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color); }
-        }
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px var(--glow-color);
+    }
+    to {
+        text-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+    }
+}
 
-        .audio-controls:hover {
-            background: var(--hover-bg);
-            transform: translateY(-1px);
-        }
+.header-controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
 
-        .volume-btn {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
+.music-controls {
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 12px 16px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 0 20px var(--glow-color);
+    animation: musicGlow 2s ease-in-out infinite alternate;
+}
 
-        .volume-btn:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 10px var(--accent-color);
-        }
+@keyframes musicGlow {
+    from {
+        box-shadow: 0 0 20px var(--glow-color);
+    }
+    to {
+        box-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+    }
+}
 
-        .volume-slider {
-            width: 0;
-            height: 4px;
-            background: var(--border-color);
-            border-radius: 2px;
-            outline: none;
-            -webkit-appearance: none;
-            transition: width 0.3s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
+.music-controls:hover {
+    background: var(--hover-background);
+    transform: translateY(-1px);
+}
 
-        .audio-controls:hover .volume-slider {
-            width: 80px;
-            opacity: 1;
-        }
+.sound-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
 
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--glow-color);
-            transition: all 0.2s ease;
-        }
+.sound-toggle:hover {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--text-primary);
+}
 
-        .volume-slider::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
-            box-shadow: 0 0 15px var(--glow-color);
-        }
+.sound-slider {
+    width: 0;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    opacity: 0;
+}
 
-        .volume-slider::-moz-range-thumb {
-            width: 12px;
-            height: 12px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            border: none;
-            box-shadow: 0 0 10px var(--glow-color);
-        }
+.music-controls:hover .sound-slider {
+    width: 80px;
+    opacity: 1;
+}
 
-        .right-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+.sound-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--glow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        .view-counter {
-            background: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 8px 16px;
-            backdrop-filter: blur(20px);
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+.sound-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px var(--glow-color);
+}
 
-        .theme-toggle {
-            background: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50px;
-            padding: 8px 12px;
-            backdrop-filter: blur(20px);
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-        }
+.sound-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px var(--glow-color);
+}
 
-        .theme-toggle:hover {
-            background: var(--hover-bg);
-            transform: scale(1.05);
-        }
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-        .profile-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.6s ease 0.2s;
-            max-width: 500px;
-            width: 90%;
-        }
+.visitor-counter {
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 8px 16px;
+    backdrop-filter: blur(20px);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
-        .profile-container.visible {
-            opacity: 1;
-        }
+.appearance-toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 10000;
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    backdrop-filter: blur(20px);
+}
 
-        .profile-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background: url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png') center/cover;
-            border: 2px solid var(--border-color);
-            box-shadow: 0 0 40px var(--glow-color);
-            animation: avatarPulse 4s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
+.appearance-toggle:hover {
+    transform: translateY(-3px) scale(1.1);
+    background: var(--hover-background);
+}
 
-        .profile-avatar::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--accent-color), transparent, var(--accent-color));
-            border-radius: 50%;
-            z-index: -1;
-            animation: rotate 3s linear infinite;
-        }
+.appearance-toggle i {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+}
 
-        @keyframes avatarPulse {
-            0%, 100% { box-shadow: 0 0 40px var(--glow-color); }
-            50% { box-shadow: 0 0 60px var(--glow-color); }
-        }
+[data-theme="light"] .appearance-toggle i.fa-sun {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--text-primary);
+}
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+.appearance-toggle i.fa-sun {
+    animation: sunPulse 2s ease-in-out infinite alternate;
+}
 
-        .username {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-            letter-spacing: 1px;
-            color: var(--text-primary);
-            text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
-            animation: usernameGlow 3s ease-in-out infinite alternate;
-        }
+@keyframes sunPulse {
+    from {
+        text-shadow: 0 0 5px var(--text-primary);
+    }
+    to {
+        text-shadow: 0 0 15px var(--text-primary), 0 0 20px var(--text-primary);
+    }
+}
 
-        @keyframes usernameGlow {
-            from { text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color); }
-            to { text-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color); }
-        }
+.user-profile {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.2s;
+    max-width: 500px;
+    width: 90%;
+}
 
-        .uid-tooltip {
-            position: absolute;
-            top: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: var(--text-secondary);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-        }
+.user-profile.visible {
+    opacity: 1;
+}
 
-        .username:hover .uid-tooltip {
-            opacity: 1;
-        }
+.user-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    background: url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png') center/cover;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 0 40px var(--glow-color);
+    animation: avatarPulse 4s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
 
-        .status-container {
-            margin: 1.5rem 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
+.user-avatar::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-color), transparent, var(--accent-color));
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotate 3s linear infinite;
+}
 
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
+@keyframes avatarPulse {
+    0%, 100% {
+        box-shadow: 0 0 40px var(--glow-color);
+    }
+    50% {
+        box-shadow: 0 0 60px var(--glow-color);
+    }
+}
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.3); opacity: 0.6; }
-        }
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
-        .discord-activity {
-            font-size: 1rem;
-            color: var(--text-secondary);
-        }
+.display-name {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+    animation: usernameGlow 3s ease-in-out infinite alternate;
+}
 
-        .activity-name {
-            color: var(--text-primary);
-            font-weight: 400;
-        }
+@keyframes usernameGlow {
+    from {
+        text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+    }
+    to {
+        text-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color);
+    }
+}
 
-        .badges-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
+.user-id-tooltip {
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+}
 
-        .badge {
-            background: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.6rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            position: relative;
-            backdrop-filter: blur(20px);
-        }
+.display-name:hover .user-id-tooltip {
+    opacity: 1;
+}
 
-        .badge:hover {
-            transform: translateY(-2px);
-            background: var(--hover-bg);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
+.activity-container {
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
 
-        .badge-tooltip {
-            position: absolute;
-            bottom: -35px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.95);
-            color: #e0e0e0;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            opacity: 0;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            font-weight: 400;
-            letter-spacing: 0.3px;
-        }
+.activity-indicator {
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
 
-        .badge:hover .badge-tooltip {
-            opacity: 1;
-        }
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.6;
+    }
+}
 
-        .badge.owner { 
-            color: #ff6b6b; 
-            border-color: rgba(255, 107, 107, 0.2);
-            background: rgba(255, 107, 107, 0.05);
-        }
-        .badge.verified { 
-            color: #4facfe; 
-            border-color: rgba(79, 172, 254, 0.2);
-            background: rgba(79, 172, 254, 0.05);
-        }
-        .badge.bug-hunter { 
-            color: #f093fb; 
-            border-color: rgba(240, 147, 251, 0.2);
-            background: rgba(240, 147, 251, 0.05);
-        }
+.activity-status {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
+.current-activity {
+    color: var(--text-primary);
+    font-weight: 400;
+}
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: var(--hover-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(20px);
-        }
+.user-badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
 
-        .social-link:hover {
-            transform: translateY(-3px) scale(1.1);
-            background: var(--hover-bg);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
+.user-badge {
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    backdrop-filter: blur(20px);
+    cursor: default;
+}
 
-        .social-link.discord:hover { 
-            background: linear-gradient(45deg, #7289da, #5865f2);
-            color: white;
-        }
-        .social-link.github:hover { 
-            background: linear-gradient(45deg, #333, #24292e);
-            color: white;
-        }
-        .social-link.tiktok:hover { 
-            background: linear-gradient(45deg, #ff0050, #fe2c55);
-            color: white;
-        }
+.user-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: var(--hover-background);
+}
 
-        .stats-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
+.user-badge.owner {
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
+    background: rgba(255, 107, 107, 0.05);
+}
 
-        @media (max-width: 768px) {
-            .username { font-size: 2rem; }
-            .profile-avatar { width: 100px; height: 100px; }
-            .badges-container { gap: 0.6rem; }
-            .badge { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
-            .entry-text { font-size: 1.5rem; }
-            .top-controls { flex-direction: column; gap: 10px; align-items: flex-start; }
-            .right-controls { order: -1; }
-            .social-links { gap: 0.8rem; }
-            .social-link { width: 40px; height: 40px; font-size: 1rem; }
-            .stats-info { flex-direction: column; gap: 0.5rem; }
-        }
+.user-badge.verified {
+    color: #4facfe;
+    border-color: rgba(79, 172, 254, 0.2);
+    background: rgba(79, 172, 254, 0.05);
+}
 
-        @media (max-width: 480px) {
-            .username { font-size: 1.8rem; }
-            .profile-avatar { width: 90px; height: 90px; }
-            .entry-text { font-size: 1.3rem; }
-        }
-    </style>
+.user-badge.bug-hunter {
+    color: #f093fb;
+    border-color: rgba(240, 147, 251, 0.2);
+    background: rgba(240, 147, 251, 0.05);
+}
+
+.social-connections {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.social-connection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    backdrop-filter: blur(20px);
+}
+
+.social-connection:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: var(--hover-background);
+}
+
+.social-connection.discord:hover {
+    background: linear-gradient(45deg, #7289da, #5865f2);
+    color: white;
+}
+
+.social-connection.github:hover {
+    background: linear-gradient(45deg, #333, #24292e);
+    color: white;
+}
+
+.social-connection.tiktok:hover {
+    background: linear-gradient(45deg, #ff0050, #fe2c55);
+    color: white;
+}
+
+.user-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.member-info {
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    padding: 10px 18px;
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.member-info:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.member-info i {
+    color: #4facfe;
+}
+
+.last-active {
+    background: var(--hover-background);
+    border: 1px solid var(--border-color);
+    padding: 10px 18px;
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.last-active:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.last-active i {
+    color: #28a745;
+}
+
+@media (max-width: 768px) {
+    .display-name {
+        font-size: 2rem;
+    }
+    .user-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    .user-badges {
+        gap: 0.6rem;
+    }
+    .user-badge {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    .welcome-text {
+        font-size: 1.5rem;
+    }
+    .header-controls {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    .header-info {
+        order: -1;
+    }
+    .social-connections {
+        gap: 0.8rem;
+    }
+    .social-connection {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    .user-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .display-name {
+        font-size: 1.8rem;
+    }
+    .user-avatar {
+        width: 90px;
+        height: 90px;
+    }
+    .welcome-text {
+        font-size: 1.3rem;
+    }
+}
+</style>
 </head>
 <body data-theme="dark">
-    <div class="cursor"></div>
+    <div class="mouse-cursor"></div>
     
-    <div class="bg-container"></div>
+    <div class="background-container"></div>
 
-    <div class="entry-screen" id="entryScreen">
-        <div class="entry-text">click to enter</div>
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-text">click to enter</div>
     </div>
 
-    <div class="top-controls">
-        <div class="audio-controls" id="audioControls">
-            <button class="volume-btn" id="volumeBtn">
-                <i class="fas fa-volume-up" id="audioIcon"></i>
+    <div class="header-controls">
+        <div class="music-controls" id="musicControls">
+            <button class="sound-toggle" id="soundToggle">
+                <i class="fas fa-volume-up" id="soundIcon"></i>
             </button>
-            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+            <input type="range" class="sound-slider" id="soundSlider" min="0" max="100" value="100">
         </div>
-        <div class="right-controls">
-            <div class="view-counter" id="viewCounter">
-                <i class="fas fa-eye"></i> <span id="viewCount">0</span> views
+        <div class="header-info">
+            <div class="visitor-counter" id="visitorCounter">
+                <i class="fas fa-eye"></i> <span id="visitorCount">0</span> views
             </div>
-            <button class="theme-toggle" id="themeToggle">
+            <button class="appearance-toggle" id="appearanceToggle">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
     </div>
 
-    <div class="profile-container" id="profileContainer">
-        <div class="profile-avatar" id="avatar"></div>
+    <div class="user-profile" id="userProfile">
+        <div class="user-avatar" id="userAvatar"></div>
         
-        <h1 class="username">
+        <h1 class="display-name">
             glyphaj
-            <div class="uid-tooltip">UID 1</div>
+            <div class="user-id-tooltip">UID 1</div>
         </h1>
 
-        <div class="status-container">
-            <div class="status-dot"></div>
-            <div class="discord-activity">
-                Playing <span class="activity-name" id="activityName">Vim</span>
+        <div class="activity-container">
+            <div class="activity-indicator"></div>
+            <div class="activity-status">
+                Playing <span class="current-activity" id="currentActivity">Vim</span>
             </div>
         </div>
 
-        <div class="badges-container">
-            <div class="badge owner">
+        <div class="user-badges">
+            <div class="user-badge owner">
                 <i class="fas fa-crown"></i>
                 <span>Owner</span>
-                <div class="badge-tooltip">Site Owner</div>
+                <!-- Site Owner - glyph.lol -->
             </div>
-            <div class="badge verified">
+            <div class="user-badge verified">
                 <i class="fas fa-check-circle"></i>
                 <span>Verified</span>
-                <div class="badge-tooltip">Verified Account</div>
+                <!-- Verified Account - glyph.lol -->
             </div>
-            <div class="badge bug-hunter">
+            <div class="user-badge bug-hunter">
                 <i class="fas fa-bug"></i>
                 <span>Bug Hunter</span>
-                <div class="badge-tooltip">Bug Hunter</div>
+                <!-- Bug Hunter - glyph.lol -->
             </div>
         </div>
 
-        <div class="social-links">
-            <a href="#" class="social-link discord" title="Discord">
+        <div class="user-stats">
+            <div class="member-info">
+                <i class="fas fa-calendar-alt"></i>
+                Member since 2025
+            </div>
+            <div class="last-active">
+                <i class="fas fa-signal"></i>
+                Last seen: now
+            </div>
+        </div>
+
+        <div class="social-connections">
+            <a href="https://discord.com/users/1132649415409156226" class="social-connection discord" title="Discord" target="_blank">
                 <i class="fab fa-discord"></i>
             </a>
-            <a href="#" class="social-link github" title="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="#" class="social-link tiktok" title="TikTok">
+            <!-- GitHub link for glyph.lol -->
+            <a href="https://www.tiktok.com/@glyphaj" class="social-connection tiktok" title="TikTok" target="_blank">
                 <i class="fab fa-tiktok"></i>
             </a>
         </div>
-
-        <div class="stats-info">
-            <span>Member since 2024</span>
-            <span>Last seen: now</span>
-        </div>
     </div>
-
-    <audio id="backgroundMusic" loop>
+	
+    <audio id="backgroundAudio" loop>
         <source src="libesleid.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        let mouseX = 0, mouseY = 0;
-        let isMouseOverClickable = false;
-        const cursor = document.querySelector('.cursor');
-        const entryScreen = document.getElementById('entryScreen');
-        const profileContainer = document.getElementById('profileContainer');
-        const audioControls = document.getElementById('audioControls');
-        const volumeBtn = document.getElementById('volumeBtn');
-        const audioIcon = document.getElementById('audioIcon');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const audio = document.getElementById('backgroundMusic');
-        const themeToggle = document.getElementById('themeToggle');
-        const viewCount = document.getElementById('viewCount');
-        const avatar = document.getElementById('avatar');
-        const activityName = document.getElementById('activityName');
+        // Mouse tracking variables
+        let mousePositionX = 0, mousePositionY = 0;
+        let isOverClickableElement = false;
+        
+        // DOM elements
+        const mouseCursor = document.querySelector('.mouse-cursor');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const userProfile = document.getElementById('userProfile');
+        const musicControls = document.getElementById('musicControls');
+        const soundToggle = document.getElementById('soundToggle');
+        const soundIcon = document.getElementById('soundIcon');
+        const soundSlider = document.getElementById('soundSlider');
+        const backgroundAudio = document.getElementById('backgroundAudio');
+        const appearanceToggle = document.getElementById('appearanceToggle');
+        const visitorCount = document.getElementById('visitorCount');
+        const userAvatar = document.getElementById('userAvatar');
+        const currentActivity = document.getElementById('currentActivity');
 
-        let musicPlaying = false;
-        let currentTheme = 'dark';
-        let viewCounter = 0;
+        // State variables
+        let audioIsPlaying = false;
+        let currentAppearance = 'dark';
+        let totalVisitors = 0;
 
-        audio.volume = 0.5;
+        backgroundAudio.volume = 0.5;
 
-        function getViewCount() {
-            const storedViews = localStorage.getItem('glyphajProfileViews');
-            return storedViews ? parseInt(storedViews) : 0;
+        // Title animation for glyph.lol
+        document.addEventListener("DOMContentLoaded", function () {
+            const pageTitle = "@glyphaj | glyph.lol";
+            const typeSpeed = 200;
+            const eraseSpeed = 100;
+            const pauseDuration = 1500;
+
+            let characterIndex = 0;
+            let isTyping = true;
+
+            function animatePageTitle() {
+                if (isTyping) {
+                    if (characterIndex < pageTitle.length) {
+                        characterIndex++;
+                        document.title = pageTitle.substring(0, characterIndex);
+                        setTimeout(animatePageTitle, typeSpeed);
+                    } else {
+                        isTyping = false;
+                        setTimeout(animatePageTitle, pauseDuration);
+                    }
+                } else {
+                    if (characterIndex > 0) {
+                        document.title = pageTitle.substring(0, characterIndex);
+                        characterIndex--;
+                        setTimeout(animatePageTitle, eraseSpeed);
+                    } else {
+                        isTyping = true;
+                        setTimeout(animatePageTitle, pauseDuration);
+                    }
+                }
+            }
+
+            animatePageTitle();
+        });
+
+        function updateVisitorDisplay() {
+            fetch("https://hits.seeyoufarm.com/api/count/incr?url=https://glyphaj1.github.io/glyph.lol.github.io/")
+                .then(response => response.json())
+                .then(data => {
+                    visitorCount.textContent = data.value.toLocaleString()
+                })
+                .catch(() => {
+                    visitorCount.textContent = "N/A"
+                })
         }
-
-        function incrementViewCount() {
-            viewCounter = getViewCount() + 1;
-            localStorage.setItem('glyphajProfileViews', viewCounter.toString());
-            updateViewDisplay();
-        }
-
-        function updateViewDisplay() {
-            viewCount.textContent = viewCounter.toLocaleString();
-        }
-
-        viewCounter = getViewCount();
-        updateViewDisplay();
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            if (!isMouseOverClickable) {
-                cursor.classList.remove('hidden');
+	   
+        document.addEventListener('mousemove', (event) => {
+            mousePositionX = event.clientX;
+            mousePositionY = event.clientY;
+            if (!isOverClickableElement) {
+                mouseCursor.classList.remove('hidden');
             }
         });
 
         document.addEventListener('mouseleave', () => {
-            cursor.classList.add('hidden');
+            mouseCursor.classList.add('hidden');
         });
 
         document.addEventListener('mouseenter', () => {
-            cursor.classList.remove('hidden');
+            mouseCursor.classList.remove('hidden');
         });
 
-        function updateCursor() {
-            cursor.style.left = mouseX - 8 + 'px';
-            cursor.style.top = mouseY - 8 + 'px';
-            requestAnimationFrame(updateCursor);
+        function updateMouseCursor() {
+            mouseCursor.style.left = mousePositionX - 8 + 'px';
+            mouseCursor.style.top = mousePositionY - 8 + 'px';
+            requestAnimationFrame(updateMouseCursor);
         }
-        updateCursor();
+        updateMouseCursor();
 
-        const clickableElements = document.querySelectorAll('button, a, input, [role="button"]');
-        clickableElements.forEach(element => {
+        const interactiveElements = document.querySelectorAll('button, a, input, [role="button"]');
+        interactiveElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                isMouseOverClickable = true;
-                cursor.classList.add('hidden');
+                isOverClickableElement = true;
+                mouseCursor.classList.add('hidden');
             });
             element.addEventListener('mouseleave', () => {
-                isMouseOverClickable = false;
-                cursor.classList.remove('hidden');
+                isOverClickableElement = false;
+                mouseCursor.classList.remove('hidden');
             });
         });
 
-        document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
-        document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
+        document.addEventListener('mousedown', () => mouseCursor.classList.add('clicked'));
+        document.addEventListener('mouseup', () => mouseCursor.classList.remove('clicked'));
 
-        entryScreen.addEventListener('click', () => {
-            incrementViewCount();
-            
-            entryScreen.classList.add('hidden');
+        function incrementVisitorCount() {
+            totalVisitors++;
+            visitorCount.textContent = totalVisitors.toLocaleString();
+        }
+
+        welcomeScreen.addEventListener('click', () => {
+            incrementVisitorCount();
+
+            welcomeScreen.classList.add('hidden');
             setTimeout(() => {
-                profileContainer.classList.add('visible');
-                createParticles();
+                userProfile.classList.add('visible');
+                generateParticles();
             }, 200);
-            
-            audio.play();
-            musicPlaying = true;
+
+            backgroundAudio.play();
+            audioIsPlaying = true;
         });
 
-        volumeBtn.addEventListener('click', () => {
-            musicPlaying = !musicPlaying;
-            if (musicPlaying) {
-                audio.play();
-                audioIcon.className = 'fas fa-volume-up';
+        soundToggle.addEventListener('click', () => {
+            audioIsPlaying = !audioIsPlaying;
+            if (audioIsPlaying) {
+                backgroundAudio.play();
+                soundIcon.className = 'fas fa-volume-up';
             } else {
-                audio.pause();
-                audioIcon.className = 'fas fa-volume-mute';
+                backgroundAudio.pause();
+                soundIcon.className = 'fas fa-volume-mute';
             }
         });
 
-        volumeSlider.addEventListener('input', (e) => {
-            const volume = e.target.value;
-            audio.volume = volume / 100;
-            if (volume == 0) {
-                audioIcon.className = 'fas fa-volume-mute';
-                musicPlaying = false;
-                audio.pause();
-            } else if (volume < 50) {
-                audioIcon.className = 'fas fa-volume-down';
-                if (!musicPlaying) {
-                    audio.play();
-                    musicPlaying = true;
+        soundSlider.addEventListener('input', (event) => {
+            const volumeLevel = event.target.value;
+            backgroundAudio.volume = volumeLevel / 100;
+            if (volumeLevel == 0) {
+                soundIcon.className = 'fas fa-volume-mute';
+                audioIsPlaying = false;
+                backgroundAudio.pause();
+            } else if (volumeLevel < 50) {
+                soundIcon.className = 'fas fa-volume-down';
+                if (!audioIsPlaying) {
+                    backgroundAudio.play();
+                    audioIsPlaying = true;
                 }
             } else {
-                audioIcon.className = 'fas fa-volume-up';
-                if (!musicPlaying) {
-                    audio.play();
-                    musicPlaying = true;
+                soundIcon.className = 'fas fa-volume-up';
+                if (!audioIsPlaying) {
+                    backgroundAudio.play();
+                    audioIsPlaying = true;
                 }
             }
         });
 
-        themeToggle.addEventListener('click', () => {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', currentTheme);
-            themeToggle.querySelector('i').className = currentTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        appearanceToggle.addEventListener('click', () => {
+            currentAppearance = currentAppearance === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', currentAppearance);
+            appearanceToggle.querySelector('i').className = currentAppearance === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
         });
 
-        function updateActivity() {
-            const now = new Date();
-            const bstTime = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + 3600000);
-            const hour = bstTime.getHours();
-            const day = bstTime.getDay();
-            
-            if (day === 6 && hour >= 11 && hour < 15) {
-                activityName.parentNode.innerHTML = '<span class="activity-name" id="activityName">Outside</span>';
-            } else if (hour >= 16 && hour < 17) {
-                activityName.parentNode.innerHTML = '<span class="activity-name" id="activityName">Outside</span>';
-            } else if (hour >= 8 && hour < 14) {
-                activityName.parentNode.innerHTML = 'Playing <span class="activity-name" id="activityName">Vim</span>';
+        function updateUserActivity() {
+            const currentTime = new Date();
+            const britishTime = new Date(currentTime.getTime() + (currentTime.getTimezoneOffset() * 60000) + 3600000);
+            const currentHour = britishTime.getHours();
+            const currentDay = britishTime.getDay();
+
+            if ((currentDay === 6 && currentHour >= 11 && currentHour < 15) || (currentHour >= 16 && currentHour < 17)) {
+                currentActivity.textContent = "Outside";
+                currentActivity.parentNode.firstChild.textContent = "";
+            } else if (currentHour >= 8 && currentHour < 15) {
+                currentActivity.textContent = "NeoVim";
+                currentActivity.parentNode.firstChild.textContent = "Playing ";
             } else {
-                activityName.parentNode.innerHTML = 'Playing <span class="activity-name" id="activityName">Roblox</span>';
+                currentActivity.textContent = "Roblox";
+                currentActivity.parentNode.firstChild.textContent = "Playing ";
             }
         }
 
-        function createParticles() {
+        function generateParticles() {
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
-                    particle.className = 'particle';
-                    const size = Math.random() * 3 + 1;
-                    particle.style.width = size + 'px';
-                    particle.style.height = size + 'px';
+                    particle.className = 'particle-element';
+                    const particleSize = Math.random() * 3 + 1;
+                    particle.style.width = particleSize + 'px';
+                    particle.style.height = particleSize + 'px';
                     particle.style.left = Math.random() * 100 + '%';
                     particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
                     particle.style.animationDelay = Math.random() * 2 + 's';
-                    document.querySelector('.bg-container').appendChild(particle);
+                    document.querySelector('.background-container').appendChild(particle);
                     setTimeout(() => {
                         if (particle.parentNode) particle.remove();
                     }, 20000);
                 }, i * 80);
             }
-            setTimeout(createParticles, 18000);
+            setTimeout(generateParticles, 18000);
         }
 
-        updateActivity();
-        setInterval(updateActivity, 60000);
+        updateUserActivity();
+        setInterval(updateUserActivity, 60000);
 
-        avatar.style.backgroundImage = "url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png')";
+        userAvatar.style.backgroundImage = "url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png')";
     </script>
+	
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F12') {
+                event.preventDefault();
+            }
+            if (event.ctrlKey && event.key.toLowerCase() === 'u') {
+                event.preventDefault();
+                event.preventDefault();
+            }
+            if (event.ctrlKey && event.shiftKey && (event.key.toLowerCase() === 'i' || event.key.toLowerCase() === 'j')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
 </body>
 </html>
