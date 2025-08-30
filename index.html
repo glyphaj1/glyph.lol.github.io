@@ -18,25 +18,25 @@
 }
 
 :root {
-    --background-primary: #0a0a0a;
-    --background-secondary: #050505;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #050505;
     --text-primary: #ffffff;
     --text-secondary: #b0b3b8;
-    --accent-color: #43b581;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --hover-background: rgba(255, 255, 255, 0.08);
-    --glow-color: rgba(255, 255, 255, 0.4);
+    --accent: #43b581;
+    --border: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.08);
+    --glow: rgba(255, 255, 255, 0.4);
 }
 
 [data-theme="light"] {
-    --background-primary: #ffffff;
-    --background-secondary: #f8f9fa;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
     --text-primary: #1a1a1a;
     --text-secondary: #6c757d;
-    --accent-color: #28a745;
-    --border-color: rgba(0, 0, 0, 0.1);
-    --hover-background: rgba(0, 0, 0, 0.05);
-    --glow-color: rgba(0, 0, 0, 0.3);
+    --accent: #28a745;
+    --border: rgba(0, 0, 0, 0.1);
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --glow: rgba(0, 0, 0, 0.3);
 }
 
 html, body {
@@ -51,58 +51,58 @@ html *, body * {
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--background-primary);
+    background: var(--bg-primary);
     color: var(--text-primary);
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
 }
 
-.mouse-cursor {
+.cursor {
     position: fixed;
     width: 16px;
     height: 16px;
-    background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transition: opacity 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 0 15px var(--glow-color);
+    box-shadow: 0 0 15px var(--glow);
     opacity: 1;
 }
 
-.mouse-cursor.hidden {
+.cursor.hidden {
     opacity: 0;
 }
 
-.mouse-cursor.clicked {
+.cursor.clicked {
     transform: scale(0.7);
 }
 
-.background-container {
+.background {
     position: fixed;
     inset: 0;
     z-index: -1;
     transition: all 0.3s ease;
 }
 
-[data-theme="dark"] .background-container {
+[data-theme="dark"] .background {
     background:
         radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
         radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
         linear-gradient(135deg, #000000 0%, #0f0f23 50%, #1a1a2e 100%);
 }
 
-[data-theme="light"] .background-container {
+[data-theme="light"] .background {
     background:
         radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 70% 80%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
         linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
 }
 
-.particle-element {
+.particle {
     position: absolute;
-    background: var(--border-color);
+    background: var(--border);
     border-radius: 50%;
     animation: float 15s linear infinite;
 }
@@ -121,7 +121,7 @@ body {
     }
 }
 
-.welcome-screen {
+.welcome {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.95);
@@ -136,7 +136,7 @@ body {
     transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-.welcome-screen.hidden {
+.welcome.hidden {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -146,21 +146,21 @@ body {
     font-size: 2rem;
     font-weight: 300;
     color: var(--text-primary);
-    text-shadow: 0 0 20px var(--glow-color);
+    text-shadow: 0 0 20px var(--glow);
     animation: glow 2s ease-in-out infinite alternate;
     letter-spacing: 2px;
 }
 
 @keyframes glow {
     from {
-        text-shadow: 0 0 20px var(--glow-color);
+        text-shadow: 0 0 20px var(--glow);
     }
     to {
-        text-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+        text-shadow: 0 0 30px var(--glow), 0 0 40px var(--glow);
     }
 }
 
-.header-controls {
+.header {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -171,9 +171,9 @@ body {
     z-index: 100;
 }
 
-.music-controls {
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+.music {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     border-radius: 15px;
     padding: 12px 16px;
     backdrop-filter: blur(20px);
@@ -181,25 +181,25 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 0 20px var(--glow-color);
+    box-shadow: 0 0 20px var(--glow);
     animation: musicGlow 2s ease-in-out infinite alternate;
 }
 
 @keyframes musicGlow {
     from {
-        box-shadow: 0 0 20px var(--glow-color);
+        box-shadow: 0 0 20px var(--glow);
     }
     to {
-        box-shadow: 0 0 30px var(--glow-color), 0 0 40px var(--glow-color);
+        box-shadow: 0 0 30px var(--glow), 0 0 40px var(--glow);
     }
 }
 
-.music-controls:hover {
-    background: var(--hover-background);
+.music:hover {
+    background: var(--hover-bg);
     transform: translateY(-1px);
 }
 
-.sound-toggle {
+.sound-btn {
     background: none;
     border: none;
     color: white;
@@ -207,15 +207,15 @@ body {
     transition: all 0.3s ease;
 }
 
-.sound-toggle:hover {
+.sound-btn:hover {
     color: var(--text-primary);
     text-shadow: 0 0 10px var(--text-primary);
 }
 
-.sound-slider {
+.volume {
     width: 0;
     height: 4px;
-    background: var(--border-color);
+    background: var(--border);
     border-radius: 2px;
     outline: none;
     -webkit-appearance: none;
@@ -223,44 +223,44 @@ body {
     opacity: 0;
 }
 
-.music-controls:hover .sound-slider {
+.music:hover .volume {
     width: 80px;
     opacity: 1;
 }
 
-.sound-slider::-webkit-slider-thumb {
+.volume::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
     background: white;
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--glow-color);
+    box-shadow: 0 0 10px var(--glow);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sound-slider::-webkit-slider-thumb:hover {
+.volume::-webkit-slider-thumb:hover {
     transform: scale(1.2);
-    box-shadow: 0 0 15px var(--glow-color);
+    box-shadow: 0 0 15px var(--glow);
 }
 
-.sound-slider::-moz-range-thumb {
+.volume::-moz-range-thumb {
     width: 12px;
     height: 12px;
     background: white;
     border-radius: 50%;
     border: none;
-    box-shadow: 0 0 10px var(--glow-color);
+    box-shadow: 0 0 10px var(--glow);
 }
 
-.header-info {
+.info {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.visitor-counter {
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+.views {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: 8px 16px;
     backdrop-filter: blur(20px);
@@ -271,13 +271,13 @@ body {
     gap: 6px;
 }
 
-.appearance-toggle {
+.theme-btn {
     position: fixed;
     bottom: 20px;
     left: 20px;
     z-index: 10000;
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -289,22 +289,22 @@ body {
     backdrop-filter: blur(20px);
 }
 
-.appearance-toggle:hover {
+.theme-btn:hover {
     transform: translateY(-3px) scale(1.1);
-    background: var(--hover-background);
+    background: var(--hover-bg);
 }
 
-.appearance-toggle i {
+.theme-btn i {
     color: var(--text-primary);
     font-size: 1.5rem;
 }
 
-[data-theme="light"] .appearance-toggle i.fa-sun {
+[data-theme="light"] .theme-btn i.fa-sun {
     color: var(--text-primary);
     text-shadow: 0 0 10px var(--text-primary);
 }
 
-.appearance-toggle i.fa-sun {
+.theme-btn i.fa-sun {
     animation: sunPulse 2s ease-in-out infinite alternate;
 }
 
@@ -317,7 +317,7 @@ body {
     }
 }
 
-.user-profile {
+.profile {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -329,31 +329,31 @@ body {
     width: 90%;
 }
 
-.user-profile.visible {
+.profile.visible {
     opacity: 1;
 }
 
-.user-avatar {
+.avatar {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     margin: 0 auto 1.5rem;
     background: url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png') center/cover;
-    border: 2px solid var(--border-color);
-    box-shadow: 0 0 40px var(--glow-color);
+    border: 2px solid var(--border);
+    box-shadow: 0 0 40px var(--glow);
     animation: avatarPulse 4s ease-in-out infinite;
     position: relative;
     overflow: hidden;
 }
 
-.user-avatar::after {
+.avatar::after {
     content: '';
     position: absolute;
     top: -2px;
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: linear-gradient(45deg, var(--accent-color), transparent, var(--accent-color));
+    background: linear-gradient(45deg, var(--accent), transparent, var(--accent));
     border-radius: 50%;
     z-index: -1;
     animation: rotate 3s linear infinite;
@@ -361,10 +361,10 @@ body {
 
 @keyframes avatarPulse {
     0%, 100% {
-        box-shadow: 0 0 40px var(--glow-color);
+        box-shadow: 0 0 40px var(--glow);
     }
     50% {
-        box-shadow: 0 0 60px var(--glow-color);
+        box-shadow: 0 0 60px var(--glow);
     }
 }
 
@@ -377,7 +377,7 @@ body {
     }
 }
 
-.display-name {
+.name {
     font-size: 2.5rem;
     font-weight: 300;
     margin-bottom: 1rem;
@@ -385,20 +385,20 @@ body {
     display: inline-block;
     letter-spacing: 1px;
     color: var(--text-primary);
-    text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
-    animation: usernameGlow 3s ease-in-out infinite alternate;
+    text-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow);
+    animation: nameGlow 3s ease-in-out infinite alternate;
 }
 
-@keyframes usernameGlow {
+@keyframes nameGlow {
     from {
-        text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--glow-color);
+        text-shadow: 0 0 20px var(--glow), 0 0 40px var(--glow);
     }
     to {
-        text-shadow: 0 0 30px var(--glow-color), 0 0 60px var(--glow-color);
+        text-shadow: 0 0 30px var(--glow), 0 0 60px var(--glow);
     }
 }
 
-.user-id-tooltip {
+.tooltip {
     position: absolute;
     top: -35px;
     left: 50%;
@@ -411,14 +411,14 @@ body {
     opacity: 0;
     transition: opacity 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
 }
 
-.display-name:hover .user-id-tooltip {
+.name:hover .tooltip {
     opacity: 1;
 }
 
-.activity-container {
+.activity {
     margin: 1.5rem 0;
     display: flex;
     align-items: center;
@@ -426,10 +426,10 @@ body {
     gap: 0.8rem;
 }
 
-.activity-indicator {
+.activity-dot {
     width: 10px;
     height: 10px;
-    background: var(--accent-color);
+    background: var(--accent);
     border-radius: 50%;
     animation: pulse 2s infinite;
 }
@@ -445,17 +445,17 @@ body {
     }
 }
 
-.activity-status {
+.status {
     font-size: 1rem;
     color: var(--text-secondary);
 }
 
-.current-activity {
+.current {
     color: var(--text-primary);
     font-weight: 400;
 }
 
-.user-badges {
+.badges {
     display: flex;
     justify-content: center;
     gap: 0.8rem;
@@ -463,9 +463,9 @@ body {
     flex-wrap: wrap;
 }
 
-.user-badge {
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+.badge {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     border-radius: 6px;
     padding: 0.6rem 1rem;
     display: flex;
@@ -478,75 +478,31 @@ body {
     cursor: default;
 }
 
-.user-badge:hover {
+.badge:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    background: var(--hover-background);
+    background: var(--hover-bg);
 }
 
-.user-badge.owner {
+.badge.owner {
     color: #ff6b6b;
     border-color: rgba(255, 107, 107, 0.2);
     background: rgba(255, 107, 107, 0.05);
 }
 
-.user-badge.verified {
+.badge.verified {
     color: #4facfe;
     border-color: rgba(79, 172, 254, 0.2);
     background: rgba(79, 172, 254, 0.05);
 }
 
-.user-badge.bug-hunter {
+.badge.bug-hunter {
     color: #f093fb;
     border-color: rgba(240, 147, 251, 0.2);
     background: rgba(240, 147, 251, 0.05);
 }
 
-.social-connections {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-}
-
-.social-connection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    backdrop-filter: blur(20px);
-}
-
-.social-connection:hover {
-    transform: translateY(-3px) scale(1.1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    background: var(--hover-background);
-}
-
-.social-connection.discord:hover {
-    background: linear-gradient(45deg, #7289da, #5865f2);
-    color: white;
-}
-
-.social-connection.github:hover {
-    background: linear-gradient(45deg, #333, #24292e);
-    color: white;
-}
-
-.social-connection.tiktok:hover {
-    background: linear-gradient(45deg, #ff0050, #fe2c55);
-    color: white;
-}
-
-.user-stats {
+.stats {
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -555,9 +511,9 @@ body {
     color: var(--text-secondary);
 }
 
-.member-info {
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+.stat {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     padding: 10px 18px;
     border-radius: 12px;
     backdrop-filter: blur(20px);
@@ -567,18 +523,18 @@ body {
     gap: 8px;
 }
 
-.member-info:hover {
+.stat:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.member-info i {
+.stat i {
     color: #4facfe;
 }
 
-.last-active {
-    background: var(--hover-background);
-    border: 1px solid var(--border-color);
+.last-seen {
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
     padding: 10px 18px;
     border-radius: 12px;
     backdrop-filter: blur(20px);
@@ -588,60 +544,104 @@ body {
     gap: 8px;
 }
 
-.last-active:hover {
+.last-seen:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.last-active i {
+.last-seen i {
     color: #28a745;
 }
 
+.social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: var(--hover-bg);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    backdrop-filter: blur(20px);
+}
+
+.social-link:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: var(--hover-bg);
+}
+
+.social-link.discord:hover {
+    background: linear-gradient(45deg, #7289da, #5865f2);
+    color: white;
+}
+
+.social-link.github:hover {
+    background: linear-gradient(45deg, #333, #24292e);
+    color: white;
+}
+
+.social-link.tiktok:hover {
+    background: linear-gradient(45deg, #ff0050, #fe2c55);
+    color: white;
+}
+
 @media (max-width: 768px) {
-    .display-name {
+    .name {
         font-size: 2rem;
     }
-    .user-avatar {
+    .avatar {
         width: 100px;
         height: 100px;
     }
-    .user-badges {
+    .badges {
         gap: 0.6rem;
     }
-    .user-badge {
+    .badge {
         padding: 0.5rem 0.8rem;
         font-size: 0.8rem;
     }
     .welcome-text {
         font-size: 1.5rem;
     }
-    .header-controls {
+    .header {
         flex-direction: column;
         gap: 10px;
         align-items: flex-start;
     }
-    .header-info {
+    .info {
         order: -1;
     }
-    .social-connections {
+    .social {
         gap: 0.8rem;
     }
-    .social-connection {
+    .social-link {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    .user-stats {
+    .stats {
         flex-direction: column;
         gap: 0.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .display-name {
+    .name {
         font-size: 1.8rem;
     }
-    .user-avatar {
+    .avatar {
         width: 90px;
         height: 90px;
     }
@@ -652,299 +652,299 @@ body {
 </style>
 </head>
 <body data-theme="dark">
-    <div class="mouse-cursor"></div>
+    <div class="cursor"></div>
     
-    <div class="background-container"></div>
+    <div class="background"></div>
 
-    <div class="welcome-screen" id="welcomeScreen">
+    <div class="welcome" id="welcome">
         <div class="welcome-text">click to enter</div>
     </div>
 
-    <div class="header-controls">
-        <div class="music-controls" id="musicControls">
-            <button class="sound-toggle" id="soundToggle">
+    <div class="header">
+        <div class="music" id="music">
+            <button class="sound-btn" id="soundBtn">
                 <i class="fas fa-volume-up" id="soundIcon"></i>
             </button>
-            <input type="range" class="sound-slider" id="soundSlider" min="0" max="100" value="100">
+            <input type="range" class="volume" id="volume" min="0" max="100" value="100">
         </div>
-        <div class="header-info">
-            <div class="visitor-counter" id="visitorCounter">
-                <i class="fas fa-eye"></i> <span id="visitorCount">0</span> views
+        <div class="info">
+            <div class="views">
+                <i class="fas fa-eye"></i> <span id="viewCount">0</span> views
             </div>
-            <button class="appearance-toggle" id="appearanceToggle">
+            <button class="theme-btn" id="themeBtn">
                 <i class="fas fa-moon"></i>
             </button>
         </div>
     </div>
 
-    <div class="user-profile" id="userProfile">
-        <div class="user-avatar" id="userAvatar"></div>
+    <div class="profile" id="profile">
+        <div class="avatar" id="avatar"></div>
         
-        <h1 class="display-name">
+        <h1 class="name">
             glyphaj
-            <div class="user-id-tooltip">UID 1</div>
+            <div class="tooltip">UID 1</div>
         </h1>
 
-        <div class="activity-container">
-            <div class="activity-indicator"></div>
-            <div class="activity-status">
-                Playing <span class="current-activity" id="currentActivity">Vim</span>
+        <div class="activity">
+            <div class="activity-dot"></div>
+            <div class="status">
+                Playing <span class="current" id="currentGame">Vim</span>
             </div>
         </div>
 
-        <div class="user-badges">
-            <div class="user-badge owner">
+        <div class="badges">
+            <div class="badge owner">
                 <i class="fas fa-crown"></i>
                 <span>Owner</span>
-                <!-- Site Owner - glyph.lol -->
             </div>
-            <div class="user-badge verified">
+            <div class="badge verified">
                 <i class="fas fa-check-circle"></i>
                 <span>Verified</span>
-                <!-- Verified Account - glyph.lol -->
             </div>
-            <div class="user-badge bug-hunter">
+            <div class="badge bug-hunter">
                 <i class="fas fa-bug"></i>
                 <span>Bug Hunter</span>
-                <!-- Bug Hunter - glyph.lol -->
             </div>
         </div>
 
-        <div class="user-stats">
-            <div class="member-info">
+        <div class="stats">
+            <div class="stat">
                 <i class="fas fa-calendar-alt"></i>
                 Member since 2025
             </div>
-            <div class="last-active">
+            <div class="last-seen">
                 <i class="fas fa-signal"></i>
                 Last seen: now
             </div>
         </div>
 
-        <div class="social-connections">
-            <a href="https://discord.com/users/1132649415409156226" class="social-connection discord" title="Discord" target="_blank">
+        <div class="social">
+            <a href="https://discord.com/users/1132649415409156226" class="social-link discord" title="Discord" target="_blank">
                 <i class="fab fa-discord"></i>
             </a>
-            <!-- GitHub link for glyph.lol -->
-            <a href="https://www.tiktok.com/@glyphaj" class="social-connection tiktok" title="TikTok" target="_blank">
+            <a href="https://www.tiktok.com/@glyphaj" class="social-link tiktok" title="TikTok" target="_blank">
                 <i class="fab fa-tiktok"></i>
             </a>
         </div>
     </div>
 	
-    <audio id="backgroundAudio" loop>
+    <audio id="audio" loop>
         <source src="libesleid.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Mouse tracking variables
-        let mousePositionX = 0, mousePositionY = 0;
-        let isOverClickableElement = false;
+        let mouseX = 0, mouseY = 0;
+        let overClickable = false;
         
-        // DOM elements
-        const mouseCursor = document.querySelector('.mouse-cursor');
-        const welcomeScreen = document.getElementById('welcomeScreen');
-        const userProfile = document.getElementById('userProfile');
-        const musicControls = document.getElementById('musicControls');
-        const soundToggle = document.getElementById('soundToggle');
+        const cursor = document.querySelector('.cursor');
+        const welcome = document.getElementById('welcome');
+        const profile = document.getElementById('profile');
+        const music = document.getElementById('music');
+        const soundBtn = document.getElementById('soundBtn');
         const soundIcon = document.getElementById('soundIcon');
-        const soundSlider = document.getElementById('soundSlider');
-        const backgroundAudio = document.getElementById('backgroundAudio');
-        const appearanceToggle = document.getElementById('appearanceToggle');
-        const visitorCount = document.getElementById('visitorCount');
-        const userAvatar = document.getElementById('userAvatar');
-        const currentActivity = document.getElementById('currentActivity');
+        const volume = document.getElementById('volume');
+        const audio = document.getElementById('audio');
+        const themeBtn = document.getElementById('themeBtn');
+        const viewCount = document.getElementById('viewCount');
+        const avatar = document.getElementById('avatar');
+        const currentGame = document.getElementById('currentGame');
 
-        // State variables
-        let audioIsPlaying = false;
-        let currentAppearance = 'dark';
-        let totalVisitors = 0;
+        let playing = false;
+        let theme = 'dark';
+        let visitors = 0;
 
-        backgroundAudio.volume = 0.5;
+        audio.volume = 0.5;
 
-        // Title animation for glyph.lol
         document.addEventListener("DOMContentLoaded", function () {
-            const pageTitle = "@glyphaj | glyph.lol";
-            const typeSpeed = 200;
-            const eraseSpeed = 100;
-            const pauseDuration = 1500;
+            const title = "@glyphaj | glyph.lol";
+            const typeSpeed = 120;
+            const eraseSpeed = 80;
+            const pause = 1500;
 
-            let characterIndex = 0;
-            let isTyping = true;
+            let charIndex = 0;
+            let typing = true;
 
-            function animatePageTitle() {
-                if (isTyping) {
-                    if (characterIndex < pageTitle.length) {
-                        characterIndex++;
-                        document.title = pageTitle.substring(0, characterIndex);
-                        setTimeout(animatePageTitle, typeSpeed);
+            function animateTitle() {
+                if (typing) {
+                    if (charIndex < title.length) {
+                        charIndex++;
+                        document.title = title.substring(0, charIndex);
+                        setTimeout(animateTitle, typeSpeed);
                     } else {
-                        isTyping = false;
-                        setTimeout(animatePageTitle, pauseDuration);
+                        typing = false;
+                        setTimeout(animateTitle, pause);
                     }
                 } else {
-                    if (characterIndex > 0) {
-                        document.title = pageTitle.substring(0, characterIndex);
-                        characterIndex--;
-                        setTimeout(animatePageTitle, eraseSpeed);
+                    if (charIndex > 0) {
+                        document.title = title.substring(0, charIndex);
+                        charIndex--;
+                        setTimeout(animateTitle, eraseSpeed);
                     } else {
-                        isTyping = true;
-                        setTimeout(animatePageTitle, pauseDuration);
+                        typing = true;
+                        setTimeout(animateTitle, pause);
                     }
                 }
             }
 
-            animatePageTitle();
+            animateTitle();
         });
 
-        function updateVisitorDisplay() {
-            fetch("https://hits.seeyoufarm.com/api/count/incr?url=https://glyph-lol-github-io.vercel.app/")
-                .then(response => response.json())
-                .then(data => {
-                    visitorCount.textContent = data.value.toLocaleString()
-                })
-                .catch(() => {
-                    visitorCount.textContent = "N/A"
-                })
-        }
-	   
-        document.addEventListener('mousemove', (event) => {
-            mousePositionX = event.clientX;
-            mousePositionY = event.clientY;
-            if (!isOverClickableElement) {
-                mouseCursor.classList.remove('hidden');
+	    document.addEventListener('mousemove', (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            
+            const margin = 10;
+            const atEdge = 
+                mouseX <= margin || 
+                mouseY <= margin || 
+                mouseX >= window.innerWidth - margin || 
+                mouseY >= window.innerHeight - margin;
+            
+            if (atEdge || overClickable) {
+                cursor.classList.add('hidden');
+            } else {
+                cursor.classList.remove('hidden');
             }
         });
 
         document.addEventListener('mouseleave', () => {
-            mouseCursor.classList.add('hidden');
+            cursor.classList.add('hidden');
         });
 
         document.addEventListener('mouseenter', () => {
-            mouseCursor.classList.remove('hidden');
+            cursor.classList.remove('hidden');
         });
 
-        function updateMouseCursor() {
-            mouseCursor.style.left = mousePositionX - 8 + 'px';
-            mouseCursor.style.top = mousePositionY - 8 + 'px';
-            requestAnimationFrame(updateMouseCursor);
-        }
-        updateMouseCursor();
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                cursor.classList.add('hidden');
+            } else {
+                cursor.classList.remove('hidden');
+            }
+        });
 
-        const interactiveElements = document.querySelectorAll('button, a, input, [role="button"]');
-        interactiveElements.forEach(element => {
+        window.addEventListener('blur', () => {
+            cursor.classList.add('hidden');
+        });
+
+        window.addEventListener('focus', () => {
+            cursor.classList.remove('hidden');
+        });
+
+        function updateCursor() {
+            cursor.style.left = mouseX - 8 + 'px';
+            cursor.style.top = mouseY - 8 + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+		const clickables = document.querySelectorAll('button, input, [role="button"]');
+        clickables.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                isOverClickableElement = true;
-                mouseCursor.classList.add('hidden');
+                overClickable = true;
+                cursor.classList.add('hidden');
             });
             element.addEventListener('mouseleave', () => {
-                isOverClickableElement = false;
-                mouseCursor.classList.remove('hidden');
+                overClickable = false;
+                cursor.classList.remove('hidden');
             });
         });
 
-        document.addEventListener('mousedown', () => mouseCursor.classList.add('clicked'));
-        document.addEventListener('mouseup', () => mouseCursor.classList.remove('clicked'));
+        document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
 
-        function incrementVisitorCount() {
-            totalVisitors++;
-            visitorCount.textContent = totalVisitors.toLocaleString();
-        }
-
-        welcomeScreen.addEventListener('click', () => {
-            incrementVisitorCount();
-
-            welcomeScreen.classList.add('hidden');
+        welcome.addEventListener('click', () => {
+            welcome.classList.add('hidden');
             setTimeout(() => {
-                userProfile.classList.add('visible');
-                generateParticles();
+                profile.classList.add('visible');
+                createParticles();
             }, 200);
 
-            backgroundAudio.play();
-            audioIsPlaying = true;
+            audio.play();
+            playing = true;
         });
 
-        soundToggle.addEventListener('click', () => {
-            audioIsPlaying = !audioIsPlaying;
-            if (audioIsPlaying) {
-                backgroundAudio.play();
+        soundBtn.addEventListener('click', () => {
+            playing = !playing;
+            if (playing) {
+                audio.play();
                 soundIcon.className = 'fas fa-volume-up';
             } else {
-                backgroundAudio.pause();
+                audio.pause();
                 soundIcon.className = 'fas fa-volume-mute';
             }
         });
 
-        soundSlider.addEventListener('input', (event) => {
-            const volumeLevel = event.target.value;
-            backgroundAudio.volume = volumeLevel / 100;
-            if (volumeLevel == 0) {
+        volume.addEventListener('input', (event) => {
+            const vol = event.target.value;
+            audio.volume = vol / 100;
+            if (vol == 0) {
                 soundIcon.className = 'fas fa-volume-mute';
-                audioIsPlaying = false;
-                backgroundAudio.pause();
-            } else if (volumeLevel < 50) {
+                playing = false;
+                audio.pause();
+            } else if (vol < 50) {
                 soundIcon.className = 'fas fa-volume-down';
-                if (!audioIsPlaying) {
-                    backgroundAudio.play();
-                    audioIsPlaying = true;
+                if (!playing) {
+                    audio.play();
+                    playing = true;
                 }
             } else {
                 soundIcon.className = 'fas fa-volume-up';
-                if (!audioIsPlaying) {
-                    backgroundAudio.play();
-                    audioIsPlaying = true;
+                if (!playing) {
+                    audio.play();
+                    playing = true;
                 }
             }
         });
 
-        appearanceToggle.addEventListener('click', () => {
-            currentAppearance = currentAppearance === 'dark' ? 'light' : 'dark';
-            document.body.setAttribute('data-theme', currentAppearance);
-            appearanceToggle.querySelector('i').className = currentAppearance === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        themeBtn.addEventListener('click', () => {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', theme);
+            themeBtn.querySelector('i').className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
         });
 
-        function updateUserActivity() {
-            const currentTime = new Date();
-            const britishTime = new Date(currentTime.getTime() + (currentTime.getTimezoneOffset() * 60000) + 3600000);
-            const currentHour = britishTime.getHours();
-            const currentDay = britishTime.getDay();
+        function updateActivity() {
+            const now = new Date();
+            const british = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + 3600000);
+            const hour = british.getHours();
+            const day = british.getDay();
 
-            if ((currentDay === 6 && currentHour >= 11 && currentHour < 15) || (currentHour >= 16 && currentHour < 17)) {
-                currentActivity.textContent = "Outside";
-                currentActivity.parentNode.firstChild.textContent = "";
-            } else if (currentHour >= 8 && currentHour < 15) {
-                currentActivity.textContent = "NeoVim";
-                currentActivity.parentNode.firstChild.textContent = "Playing ";
+            if ((day === 6 && hour >= 11 && hour < 15) || (hour >= 16 && hour < 17)) {
+                currentGame.textContent = "Outside";
+                currentGame.parentNode.firstChild.textContent = "";
+            } else if (hour >= 8 && hour < 15) {
+                currentGame.textContent = "NeoVim";
+                currentGame.parentNode.firstChild.textContent = "Playing ";
             } else {
-                currentActivity.textContent = "Roblox";
-                currentActivity.parentNode.firstChild.textContent = "Playing ";
+                currentGame.textContent = "Roblox";
+                currentGame.parentNode.firstChild.textContent = "Playing ";
             }
         }
 
-        function generateParticles() {
+        function createParticles() {
             for (let i = 0; i < 30; i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
-                    particle.className = 'particle-element';
-                    const particleSize = Math.random() * 3 + 1;
-                    particle.style.width = particleSize + 'px';
-                    particle.style.height = particleSize + 'px';
+                    particle.className = 'particle';
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
                     particle.style.left = Math.random() * 100 + '%';
                     particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
                     particle.style.animationDelay = Math.random() * 2 + 's';
-                    document.querySelector('.background-container').appendChild(particle);
+                    document.querySelector('.background').appendChild(particle);
                     setTimeout(() => {
                         if (particle.parentNode) particle.remove();
                     }, 20000);
                 }, i * 80);
             }
-            setTimeout(generateParticles, 18000);
+            setTimeout(createParticles, 18000);
         }
 
-        updateUserActivity();
-        setInterval(updateUserActivity, 60000);
+        updateActivity();
+        setInterval(updateActivity, 60000);
 
-        userAvatar.style.backgroundImage = "url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png')";
+        avatar.style.backgroundImage = "url('https://cdn.discordapp.com/avatars/1132649415409156226/e1fff070d332c059ae63374e1eaa93d8.png')";
     </script>
 	
     <script>
@@ -956,7 +956,6 @@ body {
             }
             if (event.ctrlKey && event.key.toLowerCase() === 'u') {
                 event.preventDefault();
-                event.preventDefault();
             }
             if (event.ctrlKey && event.shiftKey && (event.key.toLowerCase() === 'i' || event.key.toLowerCase() === 'j')) {
                 event.preventDefault();
@@ -964,5 +963,48 @@ body {
         });
     </script>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBRJAcr6JifcNRod-ku0GEbGQUMqzHQ0OM",
+    authDomain: "viewcounter-e49d9.firebaseapp.com",
+    projectId: "viewcounter-e49d9",
+    storageBucket: "viewcounter-e49d9.firebasestorage.app",
+    messagingSenderId: "941240606907",
+    appId: "1:941240606907:web:ba0aee31293c107fde099e",
+    measurementId: "G-HCF3MXP6ND"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  const viewCountSpan = document.getElementById("viewCount");
+
+  async function updateViewCount() {
+  const docRef = db.collection("counters").doc("visits");
+
+    try {
+      await db.runTransaction(async (tx) => {
+  const doc = await tx.get(docRef);
+  if (!doc.exists) {
+    console.log("Doc not found, setting count to 1");
+    tx.set(docRef, { count: 1 });
+    viewCountSpan.textContent = "1";
+  } else {
+    const newCount = doc.data().count + 1;
+    console.log("Incrementing count to", newCount);
+    tx.update(docRef, { count: newCount });
+    viewCountSpan.textContent = newCount.toLocaleString();
+  }
+});
+    } catch (e) {
+      console.error("Error updating counter:", e);
+      viewCountSpan.textContent = "N/A";
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", updateViewCount);
+</script>
 </body>
 </html>
